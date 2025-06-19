@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="membership_details" label="Membership Details">
+    <field name="membership_type" type="radio" label="Membership Type" required="true">
+      <option value="adult">Adult ($60.00)</option>
+      <option value="child">Child ($20.00)</option>
+    </field>
+    <field name="your_name" type="text" label="Your Name" required="true" size="60" maxlength="255" />
+    <field name="partner_name" type="text" label="Partner’s Name" size="60" maxlength="255" />
+    <field name="address" type="textarea" label="Address" required="true" rows="2" cols="60" />
+    <field name="postcode" type="text" label="Post Code" required="true" size="10" maxlength="20" />
+    <field name="birth_month" type="calendar" label="Month of Birth" required="true" size="20" maxlength="50" />
+    <field name="partner_birth_month" type="calendar" label="Partner’s Birth Month" size="20" maxlength="50" />
+    <field name="mobile" type="tel" label="Mobile" required="true" size="20" maxlength="50" />
+    <field name="phone" type="tel" label="Phone" size="20" maxlength="50" />
+    <field name="email" type="email" label="Email" required="true" size="60" maxlength="255" />
+    <field name="agree_rules" type="checkbox" label="Agree to Rules" required="true" />
+  </fieldset>
+
+  <fieldset name="vehicle_details" label="Vehicle Details">
+    <field name="primary_year" type="text" label="Primary Vehicle Year" size="10" maxlength="10" />
+    <field name="primary_make" type="text" label="Primary Vehicle Make" size="30" maxlength="100" />
+    <field name="primary_model" type="text" label="Primary Vehicle Model" size="30" maxlength="100" />
+    <field name="primary_style" type="text" label="Primary Vehicle Style" size="30" maxlength="100" />
+    <field name="primary_colour" type="text" label="Primary Vehicle Colour" size="30" maxlength="100" />
+    <field name="primary_rego" type="text" label="Primary Vehicle Rego" size="30" maxlength="100" />
+    <field name="primary_modifications" type="textarea" label="Modifications" rows="2" cols="60" />
+    <field name="vehicle_1" type="text" label="Vehicle 1 - Year, Make, Model, Style" size="60" />
+    <field name="vehicle_2" type="text" label="Vehicle 2 - Year, Make, Model, Style" size="60" />
+    <field name="vehicle_3" type="text" label="Vehicle 3 - Year, Make, Model, Style" size="60" />
+  </fieldset>
+
+  <fieldset name="admin" label="Admin Use Only">
+    <field name="membership_start" type="calendar" label="Membership Start" format="%Y-%m-%d" />
+    <field name="membership_end" type="calendar" label="Membership End" format="%Y-%m-%d" />
+    <field name="receipt_number" type="text" label="Receipt Number" size="30" maxlength="100" />
+  </fieldset>
+  <field name="id" type="hidden" />
+
+</form>

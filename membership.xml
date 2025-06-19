@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade" version="5.0">
+    <name>Membership</name>
+    <version>1.2.2</version>
+    <description>Membership management component</description>
+    <namespace path="src/">YourITHelp\Component\Membership</namespace>
+    <scriptfile>script.php</scriptfile>
+
+    <administration>
+        <menu link="index.php?option=com_membership">Memberships</menu>
+        <files folder="admin">
+            <folder>services</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <folder>models</folder>
+        </files>
+        <files>
+            <filename>script.php</filename>
+        </files>
+        <tables>
+            <table table="#__membership_submissions" file="admin/src/Table/MembershipTable.php" />
+        </tables>
+    </administration>
+</extension>
