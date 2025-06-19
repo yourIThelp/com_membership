@@ -8,6 +8,11 @@ use Joomla\CMS\Language\Text;
 
 class MembershipController extends FormController
 {
+    public function add()
+    {
+        $this->setRedirect('index.php?option=com_membership&view=membership&layout=edit');
+    }
+
     private function sendMail(array $to, string $subject, string $body, array $cc = [])
     {
         $mailer = Factory::getMailer();
