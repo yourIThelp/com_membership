@@ -4,6 +4,7 @@ namespace YourITHelp\Component\Membership\Administrator\Controller;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\Factory;
 
 class MembershipController extends FormController
 {
@@ -13,6 +14,23 @@ class MembershipController extends FormController
     {
         parent::save($key, $urlVar);
         $this->sendEmail();
+    }
+    public function delete()
+    {
+        $input = Factory::getApplication()->getInput();
+        $id = $input->getInt('id');
+
+        if ($id) {
+            $model = $this->getModel();
+            $ids = [$id]; // precisa ser variável para passar por referência
+            if ($model->delete($ids)) {
+                $this->setRedirect('index.php?option=com_membership&view=memberships', 'Membership deleted successfully.');
+                return true;
+            }
+        }
+
+        $this->setRedirect('index.php?option=com_membership&view=memberships', 'Failed to delete membership.', 'error');
+        return false;
     }
 
     protected function sendEmail()
