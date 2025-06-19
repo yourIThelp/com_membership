@@ -1,20 +1,25 @@
 <?php
 namespace YourITHelp\Component\Membership\Administrator\Controller;
 
-defined('_JEXEC') or die;
-
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Mail\MailHelper;
+use Joomla\CMS\Language\Text;
 
 class MembershipController extends FormController
 {
-    protected $view_list = 'memberships';
-
-    public function save($key = null, $urlVar = null)
+    private function sendMail(array $to, string $subject, string $body, array $cc = [])
     {
-        parent::save($key, $urlVar);
-        $this->sendEmail();
+        $mailer = Factory::getMailer();
+        $mailer->addRecipient($to);
+        if (!empty($cc)) {
+            $mailer->addCc($cc);
+        }
+        $mailer->setSubject($subject);
+        $mailer->setBody($body);
+        $mailer->Send();
     }
+
     public function delete()
     {
         $input = Factory::getApplication()->getInput();
@@ -22,8 +27,17 @@ class MembershipController extends FormController
 
         if ($id) {
             $model = $this->getModel();
-            $ids = [$id]; // precisa ser variável para passar por referência
+            $record = $model->getItem($id);
+            $email = $record->email ?? '';
+
+            $ids = [$id];
             if ($model->delete($ids)) {
+                if (MailHelper::isEmailAddress($email)) {
+                    $subject = 'Membership Deletion Notice';
+                    $body = "Hello,\n\nYour membership record has been removed from our system.\n\nIf you believe this was an error, please contact us.";
+                    $this->sendMail([$email], $subject, $body);
+                }
+
                 $this->setRedirect('index.php?option=com_membership&view=memberships', 'Membership deleted successfully.');
                 return true;
             }
@@ -33,9 +47,26 @@ class MembershipController extends FormController
         return false;
     }
 
-    protected function sendEmail()
+    public function save($key = null, $urlVar = null)
     {
-        // Lógica para enviar e-mail ao salvar
-        echo 'enviar email';
+        $result = parent::save($key, $urlVar);
+
+        $data = $this->input->post->get('jform', [], 'array');
+        $email = $data['email'] ?? '';
+
+        if (!empty($data) && MailHelper::isEmailAddress($email)) {
+            $body = "New Membership Submitted:\n";
+            foreach ($data as $k => $v) {
+                $body .= ucfirst($k) . ': ' . $v . "\n";
+            }
+
+            $to = ['halison@halison.net', 'peter@yourithelp.com.au'];
+            $cc = [$email];
+            $subject = 'New Membership Submission';
+
+            $this->sendMail($to, $subject, $body, $cc);
+        }
+
+        return $result;
     }
 }
