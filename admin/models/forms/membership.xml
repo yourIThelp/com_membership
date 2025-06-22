@@ -31,10 +31,9 @@
   </fieldset>
 
   <fieldset name="admin" label="Admin Use Only">
-    <field name="membership_start" type="calendar" label="Membership Start" format="%Y-%m-%d" />
-    <field name="membership_end" type="calendar" label="Membership End" format="%Y-%m-%d" />
+    <field name="membership_start" type="calendar" label="Membership Start" required="true"  format="%Y-%m-%d" />
+    <field name="membership_end" type="calendar" label="Membership End" required="true"  format="%Y-%m-%d" />
     <field name="receipt_number" type="text" label="Receipt Number" size="30" maxlength="100" />
   </fieldset>
   <field name="id" type="hidden" />
-
 </form>

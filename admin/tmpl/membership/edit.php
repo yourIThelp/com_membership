@@ -26,8 +26,8 @@ HTMLHelper::_('behavior.keepalive');
       <?php echo $this->form->renderFieldset('admin'); ?>
     </div>
   </div>
-
-  <input type="hidden" name="jform[id]" value="<?php echo (int) $this->item->id; ?>">
+<!-- esses inputs importante para edit -->
+  <input type="hidden" name="jform[id]" value="<?php echo (int) $this->item->id; ?>"> 
   <input type="hidden" name="task" value="membership.save">
   <?php echo HTMLHelper::_('form.token'); ?>
 </form>

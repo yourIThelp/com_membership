@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" method="upgrade" version="5.0">
     <name>Membership</name>
-    <version>1.2.2</version>
+    <version>1.3.0</version>
     <description>Membership management component</description>
     <namespace path="src/">YourITHelp\Component\Membership</namespace>
     <scriptfile>script.php</scriptfile>
@@ -14,9 +14,20 @@
             <folder>tmpl</folder>
             <folder>models</folder>
         </files>
+        <site>
+            <folder>controllers</folder>
+            <folder>models</folder>
+            <folder>views</folder>
+        </site>
         <files>
             <filename>script.php</filename>
         </files>
+        <languages folder="language">
+            <language tag="en-AU">language/en-AU/en-AU.com_membership.ini</language>
+            <language tag="en-GB">language/en-AU/en-AU.com_membership.ini</language>
+            <language tag="en-US">language/en-AU/en-AU.com_membership.ini</language>
+            <language tag="pt-BR">language/en-AU/en-AU.com_membership.ini</language>
+        </languages>
         <tables>
             <table table="#__membership_submissions" file="admin/src/Table/MembershipTable.php" />
         </tables>
